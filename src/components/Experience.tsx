@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 
-/* ===== types & data (хардкод) ===== */
+/* ====================== Types ====================== */
 type Achievement = { title: string; note?: string };
 type ExpItem = {
-  id: string;
+  id: 'sravni' | 'uchi' | 'netology' | 'shashlikoff' | 'magora';
   period: string;
   company: string;
   subtitle: string;
@@ -12,6 +12,14 @@ type ExpItem = {
   expandable: boolean;
 };
 
+/* ====================== Assets (relative paths!) ====================== */
+import imgSravniDynamic from '../assets/images/achivements/sravniDynamic.png';
+import imgClicksAndExpenses from '../assets/images/achivements/clicksAndExpenses.png';
+import imgReward1 from '../assets/images/achivements/reward1.png';
+import imgReward2 from '../assets/images/achivements/reward2.png';
+import imgExcel from '../assets/images/achivements/exel.png';
+
+/* ====================== Data ====================== */
 const DATA: ExpItem[] = [
   {
     id: 'sravni',
@@ -48,7 +56,8 @@ const DATA: ExpItem[] = [
     roles: ['CPO, 2021–2022', 'CMO, 2020', 'Lead PMM, 2020'],
     achievements: [
       {
-        title: 'Запустил две вертикали (старшая и средняя школа) — суммарно 800 млн. руб./год',
+        title:
+          'Запустил две вертикали (старшая и средняя школа) — суммарно 800 млн. руб./год',
       },
       {
         title:
@@ -94,7 +103,8 @@ const DATA: ExpItem[] = [
     id: 'magora',
     period: 'март 2017 — февраль 2015',
     company: 'Magora Systems',
-    subtitle: 'Топ-20 в мире разработчик мобильных приложений и высоконагруженных систем',
+    subtitle:
+      'Топ-20 в мире разработчик мобильных приложений и высоконагруженных систем',
     roles: ['PR-manager'],
     achievements: [
       { title: 'Организовал внешние «IT-митапы» под ключ' },
@@ -106,10 +116,10 @@ const DATA: ExpItem[] = [
   },
 ];
 
-/* ===== ui bits ===== */
-const Arrow = ({ open }: { open: boolean }) => (
+/* ====================== Icons ====================== */
+const Arrow: React.FC<{ open: boolean }> = ({ open }) => (
   <svg
-    className={`h-5 w-5 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+    className={`h-5 w-5 shrink-0 text-[#C6F57A] transition-transform ${open ? 'rotate-180' : ''}`}
     viewBox="0 0 20 20"
     fill="currentColor"
   >
@@ -117,24 +127,126 @@ const Arrow = ({ open }: { open: boolean }) => (
   </svg>
 );
 
-/* ===== helpers ===== */
+/* ====================== Helpers ====================== */
 const splitPeriod = (s: string) => {
   const [a, b] = s.split('—').map((t) => t.trim());
   return [a, b] as const;
 };
 
-/* ===== timeline constants ===== */
-const DOT = 20; // диаметр точки
-const LINE_H = 720; // фиксированная высота линии
+const DOT = 20;
+const LINE_H = 720;
 
+/* ====================== SRAVNI Expanded Blocks ====================== */
+const SravniExpand0: React.FC = () => (
+  <div className="mt-4 space-y-6 text-[#B5B5B5]">
+    <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
+      <img src={imgSravniDynamic} alt="Динамика долей кликов SRAVNI и конкурентов" className="w-full" />
+    </figure>
+
+    <p className="text-[14px] leading-[140%]">
+      Обратите внимание, как маленькие игроки схлопнулись почти до нуля.
+    </p>
+
+    <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
+      <img src={imgClicksAndExpenses} alt="Соотношение CPC, кликов и расходов" className="w-full" />
+    </figure>
+
+    <p className="text-[14px] leading-[140%]">
+      Обратите внимание, как маленькие кружочки стали почти незаметными.
+    </p>
+
+    <ul className="list-disc space-y-3 pl-5 text-[14px] leading-[140%]">
+      <li>
+        Подготовили продукт, расширили монетизацию, собрали агрессивный план,
+        расписали 7 стратегий ответной реакции рынка и у нас получилось.
+      </li>
+      <li>Полное поглощение по всем каналам сформированного спроса.</li>
+      <li>
+        За это огромное кол-во наград и десятки миллионов рублей на премирование команды.
+      </li>
+    </ul>
+
+    <div>
+      <h5 className="mb-4 text-[16px] font-medium text-white">Награды</h5>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
+          <img src={imgReward1} alt="Награда 1" className="w-full" />
+        </figure>
+        <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
+          <img src={imgReward2} alt="Награда 2" className="w-full" />
+        </figure>
+      </div>
+      <p className="mt-3 text-[14px] leading-[140%]">
+        И множество других более мелких наград.
+      </p>
+    </div>
+  </div>
+);
+
+const SravniExpand1: React.FC = () => (
+  <div className="mt-4 space-y-4 text-[14px] leading-[140%] text-[#B5B5B5]">
+    <p>
+      На фоне рыночного давления (жалобы в ФАС, давление среди партнёров) экстренно
+      пересобрал вектор вертикали на медийно-пассивную финансовую сушку.
+    </p>
+    <p>
+      Благодаря этому впервые в истории всей компании (за 10 лет) закрыл год в плюс по
+      EBITDА, вытянул прибылью убытки других направлений (более 50% валовой выручки всей
+      компании в этот год обеспечил со своего направления).
+    </p>
+  </div>
+);
+
+const SravniExpand2: React.FC = () => (
+  <div className="mt-4 space-y-6 text-[14px] leading-[140%] text-[#B5B5B5]">
+    <ul className="list-disc space-y-3 pl-5">
+      <li>
+        Огромная продуктовая работа, десятки исследований, сделали ставку на изменение
+        потребительского поведения.
+      </li>
+      <li>
+        Помимо работы с потребностью поставили фокус на строительство самой эффективной
+        бизнес-модели в рынке. Чтобы на единицу трафика зарабатывать больше остальных и
+        обеспечить себе преимущество в дистрибуции.
+      </li>
+      <li>
+        За 2 года работы получилась полная доминация над рынком и экстра рост до лидера
+        рынка (top-5 по кол-ву договоров).
+      </li>
+    </ul>
+
+    <div>
+      <p className="mb-3">
+        Ниже фрагмент сравнения воронки нашего продукта и самого технологичного игрока
+        на рынке Legal Tech (НСДД).
+      </p>
+      <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
+        <img src={imgExcel} alt="Сравнение воронок" className="w-full" />
+      </figure>
+      <p className="mt-3">
+        Подтверждение победы от лидеров рынка будет в контактах для рекомендаций.
+      </p>
+    </div>
+  </div>
+);
+
+/* ====================== Component ====================== */
 export const Experience: React.FC = () => {
-  const [current, setCurrent] = useState<string>('sravni');
+  const [current, setCurrent] = useState<ExpItem['id']>('sravni');
   const [openSet, setOpenSet] = useState<Set<number>>(new Set());
 
   const item = useMemo(() => DATA.find((x) => x.id === current)!, [current]);
 
-  // сброс открытых пунктов при смене компании
   React.useEffect(() => setOpenSet(new Set()), [current]);
+
+  const activeIdx = useMemo(() => DATA.findIndex((x) => x.id === current), [current]);
+  const isLast = activeIdx === DATA.length - 1;
+  const [first, second] = splitPeriod(DATA[activeIdx].period);
+
+  const trackTopPx = DOT / 2;
+  const gapPx = (LINE_H - DOT) / (DATA.length - 1);
+  const labelOffsetPx = isLast ? activeIdx * gapPx : (activeIdx + 0.5) * gapPx;
+  const labelTopPx = trackTopPx + labelOffsetPx;
 
   const toggleIdx = (idx: number) => {
     if (!item.expandable) return;
@@ -145,41 +257,31 @@ export const Experience: React.FC = () => {
     });
   };
 
-  /* === вычисления зависят от current — держим их ВНУТРИ компонента === */
-  const activeIdx = useMemo(() => DATA.findIndex((x) => x.id === current), [current]);
-  const isLast = activeIdx === DATA.length - 1;
-  const [first, second] = splitPeriod(DATA[activeIdx].period);
-
-  const trackTopPx = DOT / 2; // отступ от верха до центра первой точки
-
-
-  const gapPx = (LINE_H - DOT) / (DATA.length - 1);
-
-  const labelOffsetPx = isLast
-    ? activeIdx * gapPx // последняя — напротив точки
-    : (activeIdx + 0.5) * gapPx; // иначе — по центру между точками
-  const labelTopPx = trackTopPx + labelOffsetPx;
+  const renderSravniExtra = (idx: number) => {
+    if (item.id !== 'sravni' || !openSet.has(idx)) return null;
+    if (idx === 0) return <SravniExpand0 />;
+    if (idx === 1) return <SravniExpand1 />;
+    if (idx === 2) return <SravniExpand2 />;
+    return null;
+  };
 
   return (
-    <section id="experience" className="relative container mx-auto px-4 py-[60px] md:px-8">
-      <h2 className="text-center text-[40px] leading-none font-medium text-[#F3F3F3] md:text-[64px]">
+    <section id="experience" className="container relative mx-auto px-4 py-[60px] md:px-8">
+      <h2 className="text-center text-[40px] font-medium leading-none text-[#F3F3F3] md:text-[64px]">
         Опыт работы
       </h2>
 
       <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-[200px_1fr]">
-        {/* LEFT: фиксированная линия + точки + подпись слева (между точками/либо на последней) */}
+        {/* LEFT: timeline */}
         <aside className="relative">
           <div className="relative mx-auto w-[12px]" style={{ height: `${LINE_H}px` }}>
-            {/* базовая линия */}
             <div
               className="absolute left-1/2 w-[3px] -translate-x-1/2 rounded-full bg-[#0a3b3c]"
               style={{ top: DOT / 2, bottom: DOT / 2 }}
             />
-            {/* активный бирюзовый сегмент (анимация высоты) */}
             {(() => {
-              const gap = (LINE_H - DOT) / (DATA.length - 1);
               const segTop = DOT / 2;
-              const segHeight = Math.min((activeIdx + 1) * gap, LINE_H - DOT);
+              const segHeight = Math.min((activeIdx + 1) * gapPx, LINE_H - DOT / 2);
               return (
                 <div
                   className="absolute left-1/2 w-[3px] -translate-x-1/2 rounded-t-full bg-[#009596] transition-[height] duration-500 ease-out"
@@ -188,7 +290,6 @@ export const Experience: React.FC = () => {
               );
             })()}
 
-            {/* точки — ровно по центру оси и равномерно */}
             <ul
               className="absolute inset-0 flex flex-col items-center justify-between"
               style={{ paddingTop: DOT / 2, paddingBottom: DOT / 2 }}
@@ -218,15 +319,13 @@ export const Experience: React.FC = () => {
               })}
             </ul>
 
-            {/* ОДНА подпись активного периода слева */}
             <div className="pointer-events-none absolute inset-0">
               <div
                 className={[
-                  'absolute right-[calc(100%+16px)] -translate-y-1/2 text-left whitespace-pre',
+                  'absolute right-[calc(100%+16px)] -translate-y-1/2 whitespace-pre text-left',
                   'bg-clip-text text-transparent',
                   'bg-[linear-gradient(90deg,#009596_0%,#C6F57A_50.5%,#E8FFC3_100%)]',
-                  'text-[12px] font-medium tracking-[-0.02em] uppercase md:text-[18px]',
-                  'transition-all duration-300',
+                  'text-[12px] font-medium uppercase tracking-[-0.02em] md:text-[18px]',
                 ].join(' ')}
                 style={{ top: `${labelTopPx}px` }}
               >
@@ -237,8 +336,8 @@ export const Experience: React.FC = () => {
           </div>
         </aside>
 
-        {/* RIGHT: карточка компании */}
-        <div className="rounded-[20px] border border-white/10 p-6 md:p-10">
+        {/* RIGHT: company card */}
+        <div className="rounded-[20px] border border-white/10 bg-black/20 p-6 md:p-10">
           <div className="space-y-2">
             <h3 className="text-[28px] leading-[110%] tracking-[-0.04em] text-[#F3F3F3] md:text-[32px]">
               {item.company}
@@ -255,6 +354,7 @@ export const Experience: React.FC = () => {
             </ul>
           </div>
 
+          {/* Achievements */}
           <div className="mt-10">
             <h4 className="mb-6 text-[28px] leading-[110%] tracking-[-0.04em] text-[#F3F3F3] md:text-[32px]">
               {item.id === 'sravni' ? 'Достижения' : 'Что делал'}
@@ -262,39 +362,45 @@ export const Experience: React.FC = () => {
 
             <ul className="space-y-4">
               {item.achievements.map((a, idx) => {
+                const canExpand = item.expandable;
                 const isOpen = openSet.has(idx);
+
                 return (
                   <li key={idx}>
-                    <button
-                      type="button"
-                      onClick={() => toggleIdx(idx)}
-                      className={`flex w-full items-start justify-between gap-4 rounded-[16px] border border-[#C6F57A] px-5 py-5 text-left transition ${
-                        item.expandable
-                          ? 'cursor-pointer hover:border-emerald-300'
-                          : 'cursor-default'
-                      }`}
+                    {/* ЕДИНЫЙ контейнер с border/rounded для кнопки + контента */}
+                    <div
+                      className={[
+                        'group rounded-[16px] border border-[#C6F57A] transition-colors',
+                        canExpand ? 'hover:border-emerald-300' : '',
+                      ].join(' ')}
                     >
-                      <div className="min-w-0 flex-1">
-                        <p className="text-[20px] leading-[100%] text-white">{a.title}</p>
-                        {item.expandable && a.note && (
-                          <div
-                            className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ${
-                              isOpen
-                                ? 'mt-3 grid-rows-[1fr] opacity-100'
-                                : 'grid-rows-[0fr] opacity-0'
-                            }`}
-                          >
-                            <p className="min-h-0 text-[14px] leading-[100%] text-[#B5B5B5]">
-                              {a.note}
-                            </p>
-                          </div>
-                        )}
-                        {!item.expandable && a.note && (
-                          <p className="mt-3 text-[14px] leading-[100%] text-[#B5B5B5]">{a.note}</p>
-                        )}
-                      </div>
-                      <Arrow open={item.expandable ? isOpen : false} />
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() => (canExpand ? toggleIdx(idx) : undefined)}
+                        className={[
+                          'flex w-full items-start justify-between gap-4 px-5 py-5 text-left',
+                          // убираем нижние скругления когда открыт блок (визуально это единая рамка)
+                          isOpen ? 'rounded-t-[16px] rounded-b-none' : 'rounded-[16px]',
+                        ].join(' ')}
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[18px] leading-[120%] text-white md:text-[20px]">
+                            {a.title}
+                          </p>
+                          {!!a.note && !canExpand && (
+                            <p className="mt-3 text-[14px] leading-[140%] text-[#B5B5B5]">{a.note}</p>
+                          )}
+                        </div>
+                        {canExpand ? <Arrow open={isOpen} /> : null}
+                      </button>
+
+                      {canExpand && isOpen && (
+                        // никаких бордеров здесь — чтобы не было "второй рамки"
+                        <div className="px-5 pb-5 pt-0">
+                          {renderSravniExtra(idx)}
+                        </div>
+                      )}
+                    </div>
                   </li>
                 );
               })}

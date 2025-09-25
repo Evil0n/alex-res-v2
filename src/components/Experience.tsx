@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
-/* ====================== Types ====================== */
+/* ========= Types ========= */
 type Achievement = { title: string; note?: string };
 type ExpItem = {
   id: 'sravni' | 'uchi' | 'netology' | 'shashlikoff' | 'magora';
@@ -12,14 +12,14 @@ type ExpItem = {
   expandable: boolean;
 };
 
-/* ====================== Assets (relative paths!) ====================== */
-import imgSravniDynamic from '../assets/images/achivements/sravniDynamic.png';
-import imgClicksAndExpenses from '../assets/images/achivements/clicksAndExpenses.png';
-import imgReward1 from '../assets/images/achivements/reward1.png';
-import imgReward2 from '../assets/images/achivements/reward2.png';
-import imgExcel from '../assets/images/achivements/exel.png';
+/* ========= Assets (relative paths!) ========= */
+import imgSravniDynamic from '../assets/images/achievements/sravniDynamic.png';
+import imgClicksAndExpenses from '../assets/images/achievements/clicksAndExpenses.png';
+import imgReward1 from '../assets/images/achievements/reward1.png';
+import imgReward2 from '../assets/images/achievements/reward2.png';
+import imgExcel from '../assets/images/achievements/exel.png';
 
-/* ====================== Data ====================== */
+/* ========= Data ========= */
 const DATA: ExpItem[] = [
   {
     id: 'sravni',
@@ -56,8 +56,7 @@ const DATA: ExpItem[] = [
     roles: ['CPO, 2021–2022', 'CMO, 2020', 'Lead PMM, 2020'],
     achievements: [
       {
-        title:
-          'Запустил две вертикали (старшая и средняя школа) — суммарно 800 млн. руб./год',
+        title: 'Запустил две вертикали (старшая и средняя школа) — суммарно 800 млн. руб./год',
       },
       {
         title:
@@ -103,8 +102,7 @@ const DATA: ExpItem[] = [
     id: 'magora',
     period: 'март 2017 — февраль 2015',
     company: 'Magora Systems',
-    subtitle:
-      'Топ-20 в мире разработчик мобильных приложений и высоконагруженных систем',
+    subtitle: 'Топ-20 в мире разработчик мобильных приложений и высоконагруженных систем',
     roles: ['PR-manager'],
     achievements: [
       { title: 'Организовал внешние «IT-митапы» под ключ' },
@@ -116,7 +114,7 @@ const DATA: ExpItem[] = [
   },
 ];
 
-/* ====================== Icons ====================== */
+/* ========= UI bits ========= */
 const Arrow: React.FC<{ open: boolean }> = ({ open }) => (
   <svg
     className={`h-5 w-5 shrink-0 text-[#C6F57A] transition-transform ${open ? 'rotate-180' : ''}`}
@@ -127,58 +125,128 @@ const Arrow: React.FC<{ open: boolean }> = ({ open }) => (
   </svg>
 );
 
-/* ====================== Helpers ====================== */
 const splitPeriod = (s: string) => {
   const [a, b] = s.split('—').map((t) => t.trim());
   return [a, b] as const;
 };
 
+/* timeline consts */
 const DOT = 20;
 const LINE_H = 720;
 
-/* ====================== SRAVNI Expanded Blocks ====================== */
-const SravniExpand0: React.FC = () => (
-  <div className="mt-4 space-y-6 text-[#B5B5B5]">
-    <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
-      <img src={imgSravniDynamic} alt="Динамика долей кликов SRAVNI и конкурентов" className="w-full" />
-    </figure>
+/* ========= Reward card (награды) ========= */
+type RewardCardProps = {
+  number: string;
+  text: string;
+  href?: string;
+  img: string;
+  imgAlt: string;
+};
+const RewardCard: React.FC<RewardCardProps> = ({ number, text, href, img, imgAlt }) => (
+  <div className="flex flex-col gap-6 rounded-[24px] border border-white/10 p-6 md:flex-row md:items-start md:gap-[60px]">
+    <div className="flex-1">
+      <div className="flex flex-col gap-4">
+        {/* бейдж с номером */}
+        <div className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-[#C6F57A]/10 px-3 text-sm text-[#B5B5B5]">
+          {number}
+        </div>
 
-    <p className="text-[14px] leading-[140%]">
-      Обратите внимание, как маленькие игроки схлопнулись почти до нуля.
-    </p>
+        <p className="text-[14px] leading-[130%] tracking-[-0.02em] text-[#F3F3F3]">{text}</p>
 
-    <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
-      <img src={imgClicksAndExpenses} alt="Соотношение CPC, кликов и расходов" className="w-full" />
-    </figure>
-
-    <p className="text-[14px] leading-[140%]">
-      Обратите внимание, как маленькие кружочки стали почти незаметными.
-    </p>
-
-    <ul className="list-disc space-y-3 pl-5 text-[14px] leading-[140%]">
-      <li>
-        Подготовили продукт, расширили монетизацию, собрали агрессивный план,
-        расписали 7 стратегий ответной реакции рынка и у нас получилось.
-      </li>
-      <li>Полное поглощение по всем каналам сформированного спроса.</li>
-      <li>
-        За это огромное кол-во наград и десятки миллионов рублей на премирование команды.
-      </li>
-    </ul>
-
-    <div>
-      <h5 className="mb-4 text-[16px] font-medium text-white">Награды</h5>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
-          <img src={imgReward1} alt="Награда 1" className="w-full" />
-        </figure>
-        <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
-          <img src={imgReward2} alt="Награда 2" className="w-full" />
-        </figure>
+        {href && (
+          <a
+            className="inline-flex items-center gap-2 rounded-[32px] bg-[#C6F57A] px-2.5 py-1 text-[12px] leading-[100%] font-medium text-[#060807] underline"
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {/* иконку даю спрайтом — без зависимостей */}
+            <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+              <path d="M11 3h6v6h-2V6.41l-7.29 7.3-1.42-1.42L13.59 5H11V3z" />
+              <path d="M5 5h4V3H3v6h2V5zM15 15h-4v2h6v-6h-2v4zM5 13H3v4h6v-2H5v-2z" />
+            </svg>
+            Ссылка на публикацию
+          </a>
+        )}
       </div>
-      <p className="mt-3 text-[14px] leading-[140%]">
-        И множество других более мелких наград.
-      </p>
+    </div>
+
+    {/* картинка справа */}
+    <figure className="w-full overflow-hidden rounded-[12px] md:w-[267px]">
+      <img src={img} alt={imgAlt} className="h-auto w-full object-cover" />
+    </figure>
+  </div>
+);
+
+/* ========= SRAVNI expanded blocks ========= */
+const SravniExpand0: React.FC = () => (
+  <div className="rounded-[16px] border border-[#C6F57A]/100 p-5 md:p-5">
+    {/* блоки по макету: gap 40 / 32 / 12 / 16 */}
+    <div className="flex flex-col gap-10">
+      {/* графики */}
+      <div className="flex flex-col gap-8">
+        <figure className="overflow-hidden rounded-[20px] border border-white/10">
+          <img
+            src={imgSravniDynamic}
+            alt="Динамика долей кликов SRAVNI и конкурентов"
+            className="w-full"
+          />
+        </figure>
+        <p className="text-[14px] leading-[125%] text-[#B5B5B5]">
+          Обратите внимание, как маленькие игроки схлопнулись почти до нуля
+        </p>
+
+        <figure className="overflow-hidden rounded-[20px] border border-white/10">
+          <img
+            src={imgClicksAndExpenses}
+            alt="Соотношение CPC, кликов и расходов"
+            className="w-full"
+          />
+        </figure>
+        <p className="text-[14px] leading-[125%] text-[#B5B5B5]">
+          Обратите внимание, как маленькие кружочки стали почти незаметными
+        </p>
+      </div>
+
+      {/* список — меньше межстрочных зазоров */}
+      <ul className="list-disc space-y-2 pl-5">
+        <li className="text-[18px] leading-[120%] tracking-[-0.04em] text-white">
+          Подготовили продукт, расширили монетизацию, собрал агрессивный план, расписали 7 стратегий
+          ответной реакции рынка и у нас получилось
+        </li>
+        <li className="text-[18px] leading-[120%] tracking-[-0.04em] text-white">
+          Полное поглощение по всем каналам сформированного спроса
+        </li>
+        <li className="text-[18px] leading-[120%] tracking-[-0.04em] text-white">
+          За это огромное кол-во наград и десятки миллионов рублей на премирование команды
+        </li>
+      </ul>
+
+      {/* награды */}
+      <div className="flex flex-col gap-8">
+        <h5 className="text-[20px] leading-[100%] text-white">Награды</h5>
+
+        <div className="flex flex-col gap-3">
+          <RewardCard
+            number="1"
+            text="Впервые в истории компании попали в Forbes до 30, на 28-ю строку самых дорогих компаний Рунета"
+            href="#"
+            img={imgReward1}
+            imgAlt="Награда Forbes"
+          />
+          <RewardCard
+            number="2"
+            text="1-место в рейтинге самых быстрорастущих финтех компаний Рунета"
+            href="#"
+            img={imgReward2}
+            imgAlt="Награда Fintech"
+          />
+        </div>
+
+        <p className="text-[14px] leading-[125%] text-[#B5B5B5]">
+          И множество других более мелких наград
+        </p>
+      </div>
     </div>
   </div>
 );
@@ -186,41 +254,41 @@ const SravniExpand0: React.FC = () => (
 const SravniExpand1: React.FC = () => (
   <div className="mt-4 space-y-4 text-[14px] leading-[140%] text-[#B5B5B5]">
     <p>
-      На фоне рыночного давления (жалобы в ФАС, давление среди партнёров) экстренно
-      пересобрал вектор вертикали на медийно-пассивную финансовую сушку.
+      На фоне рыночного давления (жалобы в ФАС, давление среди партнёров) экстренно пересобрал
+      вектор вертикали на медийно-пассивную финансовую сушку.
     </p>
     <p>
-      Благодаря этому впервые в истории всей компании (за 10 лет) закрыл год в плюс по
-      EBITDА, вытянул прибылью убытки других направлений (более 50% валовой выручки всей
-      компании в этот год обеспечил со своего направления).
+      Благодаря этому впервые в истории всей компании (за 10 лет) закрыл год в плюс по EBITDА,
+      вытянул прибылью убытки других направлений (более 50% валовой выручки всей компании в этот год
+      обеспечил со своего направления).
     </p>
   </div>
 );
 
 const SravniExpand2: React.FC = () => (
   <div className="mt-4 space-y-6 text-[14px] leading-[140%] text-[#B5B5B5]">
-    <ul className="list-disc space-y-3 pl-5">
+    <ul className="list-disc space-y-2 pl-5">
       <li>
         Огромная продуктовая работа, десятки исследований, сделали ставку на изменение
         потребительского поведения.
       </li>
       <li>
         Помимо работы с потребностью поставили фокус на строительство самой эффективной
-        бизнес-модели в рынке. Чтобы на единицу трафика зарабатывать больше остальных и
-        обеспечить себе преимущество в дистрибуции.
+        бизнес-модели в рынке. Чтобы на единицу трафика зарабатывать больше остальных и обеспечить
+        себе преимущество в дистрибуции.
       </li>
       <li>
-        За 2 года работы получилась полная доминация над рынком и экстра рост до лидера
-        рынка (top-5 по кол-ву договоров).
+        За 2 года работы получилась полная доминация над рынком и экстра рост до лидера рынка (top-5
+        по кол-ву договоров).
       </li>
     </ul>
 
     <div>
       <p className="mb-3">
-        Ниже фрагмент сравнения воронки нашего продукта и самого технологичного игрока
-        на рынке Legal Tech (НСДД).
+        Ниже фрагмент сравнения воронки нашего продукта и самого технологичного игрока на рынке
+        Legal Tech (НСДД).
       </p>
-      <figure className="overflow-hidden rounded-[14px] border border-white/10 bg-black/20">
+      <figure className="overflow-hidden rounded-[14px] border border-white/10">
         <img src={imgExcel} alt="Сравнение воронок" className="w-full" />
       </figure>
       <p className="mt-3">
@@ -230,7 +298,7 @@ const SravniExpand2: React.FC = () => (
   </div>
 );
 
-/* ====================== Component ====================== */
+/* ========= Component ========= */
 export const Experience: React.FC = () => {
   const [current, setCurrent] = useState<ExpItem['id']>('sravni');
   const [openSet, setOpenSet] = useState<Set<number>>(new Set());
@@ -266,8 +334,8 @@ export const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="container relative mx-auto px-4 py-[60px] md:px-8">
-      <h2 className="text-center text-[40px] font-medium leading-none text-[#F3F3F3] md:text-[64px]">
+    <section id="experience" className="relative container mx-auto px-4 py-[60px] md:px-8">
+      <h2 className="text-center text-[40px] leading-none font-medium text-[#F3F3F3] md:text-[64px]">
         Опыт работы
       </h2>
 
@@ -322,10 +390,10 @@ export const Experience: React.FC = () => {
             <div className="pointer-events-none absolute inset-0">
               <div
                 className={[
-                  'absolute right-[calc(100%+16px)] -translate-y-1/2 whitespace-pre text-left',
+                  'absolute right-[calc(100%+16px)] -translate-y-1/2 text-left whitespace-pre',
                   'bg-clip-text text-transparent',
                   'bg-[linear-gradient(90deg,#009596_0%,#C6F57A_50.5%,#E8FFC3_100%)]',
-                  'text-[12px] font-medium uppercase tracking-[-0.02em] md:text-[18px]',
+                  'text-[12px] font-medium tracking-[-0.02em] uppercase md:text-[18px]',
                 ].join(' ')}
                 style={{ top: `${labelTopPx}px` }}
               >
@@ -336,7 +404,7 @@ export const Experience: React.FC = () => {
           </div>
         </aside>
 
-        {/* RIGHT: company card */}
+        {/* RIGHT: card */}
         <div className="rounded-[20px] border border-white/10 bg-black/20 p-6 md:p-10">
           <div className="space-y-2">
             <h3 className="text-[28px] leading-[110%] tracking-[-0.04em] text-[#F3F3F3] md:text-[32px]">
@@ -354,7 +422,6 @@ export const Experience: React.FC = () => {
             </ul>
           </div>
 
-          {/* Achievements */}
           <div className="mt-10">
             <h4 className="mb-6 text-[28px] leading-[110%] tracking-[-0.04em] text-[#F3F3F3] md:text-[32px]">
               {item.id === 'sravni' ? 'Достижения' : 'Что делал'}
@@ -367,7 +434,7 @@ export const Experience: React.FC = () => {
 
                 return (
                   <li key={idx}>
-                    {/* ЕДИНЫЙ контейнер с border/rounded для кнопки + контента */}
+                    {/* общий контейнер-рамка */}
                     <div
                       className={[
                         'group rounded-[16px] border border-[#C6F57A] transition-colors',
@@ -379,7 +446,6 @@ export const Experience: React.FC = () => {
                         onClick={() => (canExpand ? toggleIdx(idx) : undefined)}
                         className={[
                           'flex w-full items-start justify-between gap-4 px-5 py-5 text-left',
-                          // убираем нижние скругления когда открыт блок (визуально это единая рамка)
                           isOpen ? 'rounded-t-[16px] rounded-b-none' : 'rounded-[16px]',
                         ].join(' ')}
                       >
@@ -388,17 +454,16 @@ export const Experience: React.FC = () => {
                             {a.title}
                           </p>
                           {!!a.note && !canExpand && (
-                            <p className="mt-3 text-[14px] leading-[140%] text-[#B5B5B5]">{a.note}</p>
+                            <p className="mt-3 text-[14px] leading-[140%] text-[#B5B5B5]">
+                              {a.note}
+                            </p>
                           )}
                         </div>
                         {canExpand ? <Arrow open={isOpen} /> : null}
                       </button>
 
                       {canExpand && isOpen && (
-                        // никаких бордеров здесь — чтобы не было "второй рамки"
-                        <div className="px-5 pb-5 pt-0">
-                          {renderSravniExtra(idx)}
-                        </div>
+                        <div className="px-5 pt-0 pb-5">{renderSravniExtra(idx)}</div>
                       )}
                     </div>
                   </li>

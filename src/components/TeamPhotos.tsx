@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
@@ -8,21 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export const TeamPhotos: React.FC = () => {
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
-  const swiperRef = useRef<any>(null);
-
-  const handlePrev = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slidePrev();
-    }
-  };
-
-  const handleNext = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slideNext();
-    }
-  };
+  const [swiper, setSwiper] = useState<any>(null);
 
   return (
     <section id="team" className="container mx-auto px-4 py-[60px] md:px-[100px]">
@@ -39,7 +25,6 @@ export const TeamPhotos: React.FC = () => {
       {/* Слайдер */}
       <div className="mx-auto mt-10 max-w-[1240px]">
         <Swiper
-          ref={swiperRef}
           className="team-swiper"
           modules={[Navigation, Pagination, Autoplay]}
           slidesPerView="auto"
@@ -47,9 +32,7 @@ export const TeamPhotos: React.FC = () => {
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop={true}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
+          onSwiper={setSwiper}
         >
           {/* team.png */}
           <SwiperSlide className="!w-[770px]">
@@ -115,17 +98,15 @@ export const TeamPhotos: React.FC = () => {
           {/* стрелки */}
           <div className="flex items-center gap-3 ml-6">
             <button
-              ref={prevRef}
               aria-label="Назад"
-              onClick={handlePrev}
+              onClick={() => swiper?.slidePrev()}
               className="grid h-11 w-11 place-items-center rounded-full bg-[rgba(198,245,122,0.32)] transition hover:bg-[#C6F57A]"
             >
               <ChevronLeftIcon className="h-6 w-6 text-[#060807]" />
             </button>
             <button
-              ref={nextRef}
               aria-label="Вперёд"
-              onClick={handleNext}
+              onClick={() => swiper?.slideNext()}
               className="grid h-11 w-11 place-items-center rounded-full bg-[rgba(198,245,122,0.32)] transition hover:bg-[#C6F57A]"
             >
               <ChevronRightIcon className="h-6 w-6 text-[#060807]" />

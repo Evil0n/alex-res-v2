@@ -9,7 +9,7 @@ export const TeamPhotos: React.FC = () => {
   const [swiper, setSwiper] = useState<any>(null);
 
   return (
-    <section id="team" className="container mx-auto px-4 py-[60px] md:px-[100px]">
+    <section id="team" className="px-4 py-[60px] md:px-[100px]">
       {/* Заголовок */}
       <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-3">
         <h2 className="text-center font-medium text-[#F3F3F3] leading-[1] text-[40px] md:text-[64px]">

@@ -25,7 +25,7 @@ export const Experience: React.FC = () => {
   );
 
   return (
-    <section id="experience" className="relative container mx-auto px-4 py-[60px] md:px-8">
+    <section id="experience" className="relative px-4 py-[60px] md:px-8">
       <h2 className="text-center text-[40px] leading-none font-medium text-[#F3F3F3] md:text-[64px]">
         Опыт работы
       </h2>

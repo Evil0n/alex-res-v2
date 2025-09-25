@@ -4,6 +4,7 @@ import { PhoneIcon } from '@heroicons/react/24/solid';
 import { aboutMeData } from '../data/aboutMe';
 // assets
 import imgTeamTeambuilding from '../assets/images/team/teambuilding.png';
+import bottomBg from '../assets/bottom.png';
 import TelegramIcon from './icons/TelegramIcon.tsx';
 
 export const AboutMe: React.FC = () => {
@@ -11,17 +12,15 @@ export const AboutMe: React.FC = () => {
 
   const tel = aboutMeData.phone;
   const tgUrl = aboutMeData.telegramUrl;
-  // фоновые изображения оставим из public (не лежат в assets)
-  const base = import.meta.env.BASE_URL || '/';
+  // фоновые изображения берём из assets
 
   return (
-    <section id="about" className="relative container mx-auto px-0 pb-20 md:px-0">
+    <section id="about" className="relative px-0 pb-20 md:px-0">
       <div className="mx-auto max-w-[1360px] px-[60px]">
         <div
-          className="relative mx-auto flex w-full max-w-[1240px] flex-col items-center gap-20 rounded-[48px] px-0 py-20"
+          className="relative mx-auto flex w-full max-w-[1240px] flex-col items-center gap-20 rounded-[48px] bg-bottom bg-no-repeat bg-cover px-0 py-20"
           style={{
-            background: `radial-gradient(97.26% 97.26% at 50% 100%, #060807 79.77%, rgba(5,0,36,0) 100%), url(${base}images/noise.png), url(${base}images/asset2@2x.png)`,
-            backgroundBlendMode: 'normal, soft-light, normal',
+            backgroundImage: `url(${bottomBg})`,
           }}
         >
           {/* контент */}

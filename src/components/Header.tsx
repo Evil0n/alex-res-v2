@@ -1,16 +1,16 @@
 import React from 'react';
 import {CallMeBtn} from "./CallMeBtn.tsx";
 import ContactsModal from './ContactsModal';
-import headerBackground from '../assets/images/headerBackground.png';
+import heroBg from '../assets/hero.png';
 import headerImg from '../assets/images/headerImg.png';
 
 export const Header: React.FC = () => {
   const [contactsOpen, setContactsOpen] = React.useState(false);
   return (
-    <header className="relative container mx-auto">
+    <header className="relative">
       <div
         className="relative isolate flex flex-col items-center gap-[70px] overflow-hidden rounded-b-[48px] bg-cover bg-left-bottom bg-no-repeat px-[60px] pt-[20px] pb-[60px]"
-        style={{ backgroundImage: `url(${headerBackground})` }}
+        style={{ backgroundImage: `url(${heroBg})` }}
       >
         <div
           aria-hidden

@@ -2,12 +2,13 @@
 import React from 'react';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { aboutMeData } from '../data/aboutMe';
 
 export const AboutMe: React.FC = () => {
   const [showPhone, setShowPhone] = React.useState(false);
 
-  const tel = '+79607793254';
-  const tgUrl = 'https://t.me/Kudryavtcev';
+  const tel = aboutMeData.phone;
+  const tgUrl = aboutMeData.telegramUrl;
 
   return (
     <section id="about" className="relative container mx-auto px-0 pb-20 md:px-0">
@@ -37,18 +38,14 @@ export const AboutMe: React.FC = () => {
                 <div className="flex max-w-[552px] flex-col gap-6">
                   <h3 className="text-[52px] leading-none font-medium text-[#F3F3F3]">О себе</h3>
                   <p className="max-w-[500px] text-[18px] leading-[130%] text-[#B5B5B5]">
-                    Завёл щенка бигля, люблю баню и природу. Эндуро, горы, сплавы, спортивные
-                    шахматы, острова и единоборства
+                    {aboutMeData.aboutText}
                   </p>
                 </div>
 
                 <div className="flex max-w-[552px] flex-col gap-6">
                   <h3 className="text-[52px] leading-none font-medium text-[#F3F3F3]">Ищу</h3>
                   <p className="text-[18px] leading-[130%] text-[#B5B5B5]">
-                    Роль, где можно взять под ответственность вертикаль / юнит / продукт /
-                    направление и привести его к масштабируемому росту. Готов к сложным
-                    направлениям, ставить процессы и выводить из убытка. Могу действовать как
-                    продуктовый, маркетинговый, операционный и стратегический лидер
+                    {aboutMeData.lookingForText}
                   </p>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { teamPhotosData } from '../data/teamPhotos';
 
 
 export const TeamPhotos: React.FC = () => {
@@ -31,60 +32,17 @@ export const TeamPhotos: React.FC = () => {
           loop={true}
           onSwiper={setSwiper}
         >
-          {/* team.png */}
-          <SwiperSlide className="!w-[770px]">
-            <figure className="relative h-[550px] w-full overflow-hidden rounded-[20px]">
-              <img
-                src="/images/team/team.png"
-                alt="Команда в офисе"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          </SwiperSlide>
-
-          {/* presentation.png */}
-          <SwiperSlide className="!w-[500px]">
-            <figure className="relative h-[550px] w-full overflow-hidden rounded-[20px]">
-              <img
-                src="/images/team/presentation.png"
-                alt="Презентация"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          </SwiperSlide>
-
-          {/* teamwork.png */}
-          <SwiperSlide className="!w-[531px]">
-            <figure className="relative h-[545px] w-full overflow-hidden rounded-[20px]">
-              <img
-                src="/images/team/teamwork.png"
-                alt="Совместная работа"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          </SwiperSlide>
-
-          {/* teambuilding.png */}
-          <SwiperSlide className="!w-[500px]">
-            <figure className="relative h-[550px] w-full overflow-hidden rounded-[20px]">
-              <img
-                src="/images/team/teambuilding.png"
-                alt="Тимбилдинг"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          </SwiperSlide>
-
-          {/* professional.png */}
-          <SwiperSlide className="!w-[500px]">
-            <figure className="relative h-[550px] w-full overflow-hidden rounded-[20px]">
-              <img
-                src="/images/team/professional.png"
-                alt="Профессиональные моменты"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          </SwiperSlide>
+          {teamPhotosData.map((photo, index) => (
+            <SwiperSlide key={index} className={`!w-[${photo.width}]`}>
+              <figure className={`relative h-[${photo.height}] w-full overflow-hidden rounded-[20px]`}>
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="h-full w-full object-cover"
+                />
+              </figure>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         {/* панель управления */}

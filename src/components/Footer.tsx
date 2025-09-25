@@ -101,7 +101,7 @@ export const Footer: React.FC = () => {
               </svg>
             </a>
             <a
-              href="https://vk.com"
+              href="https://vk.com/kudryavtcev_aa"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="VK"
@@ -111,7 +111,7 @@ export const Footer: React.FC = () => {
               <VkIcon className="h-6 w-6" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/aleksandr.kudryavtcev/?igsh=MTlybG5zeXlieW50Mg%3D%3D#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

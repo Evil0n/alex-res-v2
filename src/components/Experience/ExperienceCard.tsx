@@ -1,6 +1,7 @@
 import React from 'react';
 import { Arrow } from './Arrow';
-import { SravniExpand0, SravniExpand1, SravniExpand2 } from './SravniExpanded';
+import { Accordion } from './Accordion';
+import { SravniExpand0, SravniExpand1, SravniExpand2, SravniExpand3, SravniExpand4 } from './SravniExpanded';
 import { type ExpItem } from '../../data/experience';
 
 type ExperienceCardProps = {
@@ -15,6 +16,8 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({ item, openSet, o
     if (idx === 0) return <SravniExpand0 />;
     if (idx === 1) return <SravniExpand1 />;
     if (idx === 2) return <SravniExpand2 />;
+    if (idx === 3) return <SravniExpand3 />;
+    if (idx === 4) return <SravniExpand4 />;
     return null;
   };
 
@@ -81,15 +84,14 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({ item, openSet, o
                     {canExpand ? <Arrow open={isOpen} /> : null}
                   </button>
 
-                  {canExpand && isOpen && (
-                    <div
-                      id={`exp-${item.id}-${idx}`}
-                      role="region"
-                      aria-labelledby={`exp-title-${item.id}-${idx}`}
+                  {canExpand && (
+                    <Accordion
+                      open={isOpen}
+                      labelledById={`exp-title-${item.id}-${idx}`}
                       className="px-5 pt-0 pb-5"
                     >
                       {renderSravniExtra(idx)}
-                    </div>
+                    </Accordion>
                   )}
                 </div>
               </li>

@@ -1,12 +1,14 @@
 import React from 'react';
 import {CallMeBtn} from "./CallMeBtn.tsx";
+import headerBackground from '../assets/images/headerBackground.png';
+import headerImg from '../assets/images/headerImg.png';
 
 export const Header: React.FC = () => {
   return (
     <header className="relative container mx-auto">
       <div
         className="relative isolate flex flex-col items-center gap-[70px] overflow-hidden rounded-b-[48px] bg-cover bg-left-bottom bg-no-repeat px-[60px] pt-[20px] pb-[60px]"
-        style={{ backgroundImage: 'url(/images/headerBackground.png)' }}
+        style={{ backgroundImage: `url(${headerBackground})` }}
       >
         <div
           aria-hidden
@@ -63,7 +65,7 @@ export const Header: React.FC = () => {
         <div className="flex w-full flex-row items-start gap-[70px]">
           <div className="relative h-[432px] w-[408px] overflow-hidden rounded-[20px]">
             <img
-              src="/images/headerImg.png"
+              src={headerImg}
               alt="Фото"
               className="h-full w-full object-contain object-bottom"
             />

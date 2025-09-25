@@ -14,6 +14,8 @@ export type ContactsModalProps = {
 
 export const ContactsModal: React.FC<ContactsModalProps> = ({ open, onClose }) => {
   if (!open) return null;
+  const base = import.meta.env.BASE_URL || '/';
+  const resumeUrl = `${base}images/resume.png`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" aria-modal="true" role="dialog">
@@ -46,7 +48,7 @@ export const ContactsModal: React.FC<ContactsModalProps> = ({ open, onClose }) =
             rel="noopener noreferrer"
               className="inline-flex h-[50px] items-center gap-2 rounded-[36px] bg-[#C6F57A] px-4 text-[14px] font-medium text-[#060807] hover:brightness-95"
             >
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-[#121313]"><TelegramIcon className="h-5 w-5 text-[#C6F57A]" /></span>
+              <span className="grid h-6 w-6 place-items-center rounded-full bg-[#C6F57A]"><TelegramIcon className="h-5 w-5 text-[#C6F57A]" /></span>
               Написать в Телеграм
             </a>
 
@@ -54,15 +56,15 @@ export const ContactsModal: React.FC<ContactsModalProps> = ({ open, onClose }) =
               href="tel:+79607793254"
               className="inline-flex h-[50px] items-center gap-2 rounded-[36px] border border-[#B5B5B5] px-4 text-[14px] text-[#B5B5B5] hover:border-white/40"
             >
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-white/10"><PhoneFillIcon className="h-5 w-5 text-[#B5B5B5]" /></span>
+              <span className="grid h-6 w-6 place-items-center rounded-full"><PhoneFillIcon className="h-5 w-5 text-[#B5B5B5]" /></span>
               +7 (960) 779-32-54
             </a>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <a
-              href="/images/resume.png"
-              download
+              href={resumeUrl}
+              download="resume.png"
               className="inline-flex h-[50px] items-center justify-center gap-2 rounded-[36px] border border-[#B5B5B5] px-4 text-[14px] text-[#B5B5B5] hover:border-white/40"
             >
               <ResumeIcon className="h-6 w-6 text-[#B5B5B5]" />

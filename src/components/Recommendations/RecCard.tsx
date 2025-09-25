@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactRequestModal from '../ContactRequestModal';
 import { tagIcon } from './TagIcon';
 import { type RecGroup, type RecItem } from '../../data/recommendations';
 
@@ -8,6 +9,7 @@ type RecCardProps = {
 };
 
 export const RecCard: React.FC<RecCardProps> = ({ group, item }) => {
+  const [open, setOpen] = React.useState(false);
   return (
     <div className="flex flex-col justify-between gap-9 rounded-[28px] border border-white/10 p-6">
       <div className="space-y-4">
@@ -28,12 +30,14 @@ export const RecCard: React.FC<RecCardProps> = ({ group, item }) => {
         </div>
       </div>
 
-      <a
-        href="#contacts"
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
         className="mx-auto inline-flex h-[50px] items-center justify-center rounded-[36px] border border-[#B5B5B5] px-4 text-[14px] font-medium text-[#B5B5B5] transition hover:border-[#C6F57A] hover:bg-[#C6F57A] hover:text-black"
       >
         Запросить контакт
-      </a>
+      </button>
+      <ContactRequestModal open={open} onClose={() => setOpen(false)} />
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import { ResumeIcon } from './icons/ResumeIcon';
+import TelegramIcon from './icons/TelegramIcon';
 import React, { useState } from 'react';
+import { PhoneIcon ,ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 
 export const CallMeBtn: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -13,13 +15,13 @@ export const CallMeBtn: React.FC = () => {
         >
           {/* Анимированный фон с градиентом */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#C6F57A] via-emerald-300 to-[#C6F57A] bg-[length:200%_100%] transition-all duration-1000 group-hover:bg-[length:100%_100%] group-hover:animate-gradient-shift" />
-          
+
           {/* Дополнительный слой для перелива */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-shimmer" />
-          
+
           {/* Контент */}
-          <span className="relative z-10 inline-flex h-7 w-7 items-center justify-center rounded-full bg-black/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-black/20">
-            💬
+          <span className="relative z-10 inline-flex h-7 w-7 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110">
+            <ChatBubbleLeftRightIcon />
           </span>
           <span className="relative z-10 transition-all duration-300 group-hover:tracking-wide">
             Связаться со мной
@@ -32,19 +34,21 @@ export const CallMeBtn: React.FC = () => {
               href="https://t.me/Kudryavtcev"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
+              className="inline-flex items-center gap-2 rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
             >
+              <TelegramIcon />
               Связаться в Telegram
             </a>
             <a
               href="tel:+79607793254"
-              className="rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
+              className="inline-flex items-center gap-2 rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
             >
+              <PhoneIcon className="size-6" />
               Позвонить
             </a>
             <a
-              href="/images/resume.png"
-              download
+              href={(import.meta as any).env.BASE_URL ? `${import.meta.env.BASE_URL}images/resume.png` : '/images/resume.png'}
+              download="resume.png"
               className="inline-flex items-center gap-2 rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
             >
               <ResumeIcon className="h-5 w-5" />

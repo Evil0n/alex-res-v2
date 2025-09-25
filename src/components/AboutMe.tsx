@@ -1,10 +1,10 @@
 // src/components/AboutMe.tsx
 import React from 'react';
 import { PhoneIcon } from '@heroicons/react/24/solid';
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 import { aboutMeData } from '../data/aboutMe';
 // assets
 import imgTeamTeambuilding from '../assets/images/team/teambuilding.png';
+import TelegramIcon from './icons/TelegramIcon.tsx';
 
 export const AboutMe: React.FC = () => {
   const [showPhone, setShowPhone] = React.useState(false);
@@ -20,8 +20,7 @@ export const AboutMe: React.FC = () => {
         <div
           className="relative mx-auto flex w-full max-w-[1240px] flex-col items-center gap-20 rounded-[48px] px-0 py-20"
           style={{
-            background:
-              `radial-gradient(97.26% 97.26% at 50% 100%, #060807 79.77%, rgba(5,0,36,0) 100%), url(${base}images/noise.png), url(${base}images/asset2@2x.png)`,
+            background: `radial-gradient(97.26% 97.26% at 50% 100%, #060807 79.77%, rgba(5,0,36,0) 100%), url(${base}images/noise.png), url(${base}images/asset2@2x.png)`,
             backgroundBlendMode: 'normal, soft-light, normal',
           }}
         >
@@ -63,7 +62,9 @@ export const AboutMe: React.FC = () => {
                   className="inline-flex h-[50px] items-center gap-2 rounded-[36px] bg-[#C6F57A] px-4 text-[14px] font-medium text-[#060807] transition hover:brightness-95"
                 >
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-[#121313]">
-                    <PaperAirplaneIcon className="h-4 w-4 text-[#C6F57A]" />
+                    <span className="grid h-6 w-6 place-items-center rounded-full bg-[#C6F57A]">
+                      <TelegramIcon className="h-5 w-5 text-[#C6F57A]" />
+                    </span>
                   </span>
                   Написать в Телеграм
                 </a>

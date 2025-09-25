@@ -88,7 +88,7 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({ item, openSet, o
                     <Accordion
                       open={isOpen}
                       labelledById={`exp-title-${item.id}-${idx}`}
-                      className="px-5 pt-0 pb-5"
+                      className={['px-5 pt-0', item.id === 'sravni' ? 'pb-0' : 'pb-5'].join(' ')}
                     >
                       {renderSravniExtra(idx)}
                     </Accordion>

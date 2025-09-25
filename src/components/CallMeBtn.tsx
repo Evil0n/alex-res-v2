@@ -1,3 +1,4 @@
+import { ResumeIcon } from './icons/ResumeIcon';
 import React, { useState } from 'react';
 
 export const CallMeBtn: React.FC = () => {
@@ -42,10 +43,11 @@ export const CallMeBtn: React.FC = () => {
               Позвонить
             </a>
             <a
-              href="/resume.pdf"
+              href="/images/resume.png"
               download
-              className="rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
+              className="inline-flex items-center gap-2 rounded-[20px] bg-[#C6F57A] px-3 py-2 text-center text-[14px] font-medium text-black transition hover:bg-emerald-300"
             >
+              <ResumeIcon className="h-5 w-5" />
               Скачать PDF-резюме
             </a>
           </div>

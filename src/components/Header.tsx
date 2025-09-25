@@ -1,9 +1,11 @@
 import React from 'react';
 import {CallMeBtn} from "./CallMeBtn.tsx";
+import ContactsModal from './ContactsModal';
 import headerBackground from '../assets/images/headerBackground.png';
 import headerImg from '../assets/images/headerImg.png';
 
 export const Header: React.FC = () => {
+  const [contactsOpen, setContactsOpen] = React.useState(false);
   return (
     <header className="relative container mx-auto">
       <div
@@ -53,13 +55,14 @@ export const Header: React.FC = () => {
             </a>
           </nav>
 
-          <a
-            href="#contacts"
+          <button
+            type="button"
+            onClick={() => setContactsOpen(true)}
             className="group relative cursor-pointer text-[14px] leading-none text-[#DDDDDD] transition-all duration-300 hover:text-emerald-300 hover:scale-105"
           >
             <span className="relative z-10">Контакты</span>
             <div className="absolute inset-0 -z-10 rounded-lg bg-emerald-300/10 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110" />
-          </a>
+          </button>
         </div>
 
         <div className="flex w-full flex-row items-start gap-[70px]">
@@ -127,6 +130,7 @@ export const Header: React.FC = () => {
       <div className="mt-8 flex justify-end">
           <CallMeBtn />
       </div>
+      <ContactsModal open={contactsOpen} onClose={() => setContactsOpen(false)} />
     </header>
   );
 };

@@ -3,12 +3,15 @@ import React from 'react';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 import { aboutMeData } from '../data/aboutMe';
+// assets
+import imgTeamTeambuilding from '../assets/images/team/teambuilding.png';
 
 export const AboutMe: React.FC = () => {
   const [showPhone, setShowPhone] = React.useState(false);
 
   const tel = aboutMeData.phone;
   const tgUrl = aboutMeData.telegramUrl;
+  // фоновые изображения оставим из public (не лежат в assets)
   const base = import.meta.env.BASE_URL || '/';
 
   return (
@@ -27,7 +30,7 @@ export const AboutMe: React.FC = () => {
             {/* фото */}
             <div className="relative h-[486px] w-[380px] overflow-hidden rounded-[20px]">
               <img
-                src={`${base}images/team/teambuilding.png`}
+                src={imgTeamTeambuilding}
                 alt="Хайкинг с командой"
                 className="absolute -top-4 -left-px h-[520px] w-[390px] object-cover"
               />

@@ -15,11 +15,10 @@ export const Experience: React.FC = () => {
     (idx: number) => {
       if (!item.expandable) return;
       setOpenSet((prev) => {
-        // единовременно открыт только один пункт
-        if (prev.has(idx)) {
-          return new Set(); // клик по открытому — закрыть всё
-        }
-        return new Set([idx]); // открыть только текущий
+        // возвращаем возможность открывать несколько одновременно (toggle)
+        const next = new Set(prev);
+        next.has(idx) ? next.delete(idx) : next.add(idx);
+        return next;
       });
     },
     [item.expandable],

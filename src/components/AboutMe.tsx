@@ -9,6 +9,7 @@ export const AboutMe: React.FC = () => {
 
   const tel = aboutMeData.phone;
   const tgUrl = aboutMeData.telegramUrl;
+  const base = import.meta.env.BASE_URL || '/';
 
   return (
     <section id="about" className="relative container mx-auto px-0 pb-20 md:px-0">
@@ -17,7 +18,7 @@ export const AboutMe: React.FC = () => {
           className="relative mx-auto flex w-full max-w-[1240px] flex-col items-center gap-20 rounded-[48px] px-0 py-20"
           style={{
             background:
-              'radial-gradient(97.26% 97.26% at 50% 100%, #060807 79.77%, rgba(5,0,36,0) 100%), url(/images/noise.png), url(/images/asset2@2x.png)',
+              `radial-gradient(97.26% 97.26% at 50% 100%, #060807 79.77%, rgba(5,0,36,0) 100%), url(${base}images/noise.png), url(${base}images/asset2@2x.png)`,
             backgroundBlendMode: 'normal, soft-light, normal',
           }}
         >
@@ -26,7 +27,7 @@ export const AboutMe: React.FC = () => {
             {/* фото */}
             <div className="relative h-[486px] w-[380px] overflow-hidden rounded-[20px]">
               <img
-                src="/images/team/teambuilding.png"
+                src={`${base}images/team/teambuilding.png`}
                 alt="Хайкинг с командой"
                 className="absolute -top-4 -left-px h-[520px] w-[390px] object-cover"
               />
@@ -96,6 +97,7 @@ export const AboutMe: React.FC = () => {
           />
         </div>
       </div>
+      <div className="mt-16 h-px w-full border-b border-white/10" />
     </section>
   );
 };

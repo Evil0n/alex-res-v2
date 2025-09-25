@@ -33,8 +33,8 @@ export const TeamPhotos: React.FC = () => {
           onSwiper={setSwiper}
         >
           {teamPhotosData.map((photo, index) => (
-            <SwiperSlide key={index} className={`!w-[${photo.width}]`}>
-              <figure className={`relative h-[${photo.height}] w-full overflow-hidden rounded-[20px]`}>
+            <SwiperSlide key={index} style={{ width: photo.width }}>
+              <figure className="relative w-full overflow-hidden rounded-[20px]" style={{ height: photo.height }}>
                 <img
                   src={photo.src}
                   alt={photo.alt}
@@ -74,6 +74,7 @@ export const TeamPhotos: React.FC = () => {
           Легко укомплектую штат любой сложности командой редких специалистов
         </p>
       </div>
+      <div className="mt-16 h-px w-full border-b border-white/10" />
     </section>
   );
 };

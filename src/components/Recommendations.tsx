@@ -19,6 +19,7 @@ export const Recommendations: React.FC = () => {
 
         <ContactLink />
       </div>
+      <div className="mt-16 h-px w-full border-b border-white/10" />
     </section>
   );
 };
